@@ -1,4 +1,5 @@
 import { useCart } from "../context/CartContext";
+import toast from "react-hot-toast";
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -9,7 +10,7 @@ export default function Cart() {
   const total = cart.reduce((sum, book) => sum + book.price, 0);
 
   const handleCheckout = () => {
-    alert(`Thank you for your purchase! Total: ₹${total}`);
+    toast.success(`Purchase successful! Total: ₹${total}`);
     clearCart();
   };
 
@@ -48,7 +49,7 @@ export default function Cart() {
       <div className="text-right mt-4">
         <button
           onClick={handleCheckout}
-          className="bg-green-600 text-blue px-6 py-3 rounded hover:bg-green-700 transition"
+          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition"
         >
           Checkout
         </button>

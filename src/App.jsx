@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Books from "./pages/Books";
 import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <Router>
+      <Toaster position="top-right" reverseOrder={false} />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
