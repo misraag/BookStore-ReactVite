@@ -6,7 +6,10 @@ export default function Books() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
 
-  const categories = ["All", ...new Set(booksData.map((book) => book.category))];
+  const categories = [
+    "All",
+    ...new Set(booksData.map((book) => book.category)),
+  ];
 
   const filteredBooks = booksData
     .filter(
@@ -14,7 +17,9 @@ export default function Books() {
         book.title.toLowerCase().includes(search.toLowerCase()) ||
         book.author.toLowerCase().includes(search.toLowerCase())
     )
-    .filter((book) => (category && category !== "All" ? book.category === category : true));
+    .filter((book) =>
+      category && category !== "All" ? book.category === category : true
+    );
 
   return (
     <div className="p-8">
@@ -43,7 +48,9 @@ export default function Books() {
           <BookCard key={book.id} book={book} />
         ))}
         {filteredBooks.length === 0 && (
-          <p className="text-center text-gray-500 col-span-full mt-10">No books found.</p>
+          <p className="text-center text-gray-500 col-span-full mt-10">
+            No books found.
+          </p>
         )}
       </div>
     </div>

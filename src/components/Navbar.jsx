@@ -6,7 +6,7 @@ export default function Navbar() {
   const { cart } = useCart();
 
   return (
-    <nav className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 flex justify-between items-center text-white">
+    <nav className="bg-gradient-to-r from-blue-500 to-indigo-600 p-4 flex justify-between items-center text-white sticky top-0 z-50">
       <h1 className="text-2xl font-bold">BookStore</h1>
       <div className="flex items-center gap-6">
         <Link className="hover:underline" to="/">Home</Link>
