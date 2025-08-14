@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Books from "./pages/Books";
 import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
+import Checkout from "./pages/Checkout";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   );

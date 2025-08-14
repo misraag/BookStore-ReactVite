@@ -1,8 +1,9 @@
 import { useCart } from "../context/CartContext";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   if (cart.length === 0)
     return <h1 className="text-3xl text-center mt-20">Cart is Empty</h1>;
@@ -10,8 +11,7 @@ export default function Cart() {
   const total = cart.reduce((sum, book) => sum + book.price, 0);
 
   const handleCheckout = () => {
-    toast.success(`Purchase successful! Total: ₹${total}`);
-    clearCart();
+    navigate("/checkout"); // Navigate to Checkout page
   };
 
   return (
@@ -22,11 +22,13 @@ export default function Cart() {
           className="flex items-center justify-between border p-4 rounded shadow hover:shadow-lg transition bg-white"
         >
           <div className="flex items-center gap-4">
-            <img
-              src={book.cover}
-              alt={book.title}
-              className="w-24 h-32 object-cover rounded-lg"
-            />
+            {book.cover && (
+              <img
+                src={book.cover}
+                alt={book.title}
+                className="w-24 h-32 object-cover rounded-lg"
+              />
+            )}
             <div>
               <h2 className="text-lg font-bold">{book.title}</h2>
               <p className="text-gray-500">{book.author}</p>
