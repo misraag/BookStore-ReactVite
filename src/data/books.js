@@ -4,6 +4,7 @@ const books = [
     title: "Atomic Habits",
     author: "James Clear",
     price: 300,
+    category: "Self-help",
     cover: "https://images-na.ssl-images-amazon.com/images/I/51-uspgqWIL._SX329_BO1,204,203,200_.jpg"
   },
   {
@@ -11,6 +12,7 @@ const books = [
     title: "The Alchemist",
     author: "Paulo Coelho",
     price: 250,
+    category: "Fiction",
     cover: "https://images-na.ssl-images-amazon.com/images/I/41vFZn7JQ6L._SX331_BO1,204,203,200_.jpg"
   },
   {
@@ -18,8 +20,9 @@ const books = [
     title: "Deep Work",
     author: "Cal Newport",
     price: 350,
+    category: "Self-help",
     cover: "https://images-na.ssl-images-amazon.com/images/I/41yaM3hFYwL._SX329_BO1,204,203,200_.jpg"
-  },
+  }
 ];
 
 export default books;
