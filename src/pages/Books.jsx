@@ -1,94 +1,61 @@
-import { useState } from "react";
-import booksData from "../data/books";
-import BookCard from "../components/BookCard";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import books from "../data/books";
+import toast from "react-hot-toast";
 
-export default function Books() {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [sort, setSort] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const booksPerPage = 8;
-
-  const categories = ["All", ...new Set(booksData.map((book) => book.category))];
-
-  const filteredBooks = booksData
-    .filter(
-      (book) =>
-        book.title.toLowerCase().includes(search.toLowerCase()) ||
-        book.author.toLowerCase().includes(search.toLowerCase())
-    )
-    .filter((book) =>
-      category && category !== "All" ? book.category === category : true
-    );
-
-  const sortedBooks = [...filteredBooks];
-  if (sort === "price-asc") sortedBooks.sort((a, b) => a.price - b.price);
-  if (sort === "price-desc") sortedBooks.sort((a, b) => b.price - a.price);
-  if (sort === "title-asc") sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
-  if (sort === "title-desc") sortedBooks.sort((a, b) => b.title.localeCompare(a.title));
-
-  const indexOfLastBook = currentPage * booksPerPage;
-  const indexOfFirstBook = indexOfLastBook - booksPerPage;
-  const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
-  const totalPages = Math.ceil(sortedBooks.length / booksPerPage);
+const Books = () => {
+  const { addToCart } = useCart();
 
   return (
-    <div className="pt-24 max-w-5xl mx-auto p-8">
-      <input
-        type="text"
-        placeholder="Search by title or author..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full mb-4 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      />
+    <div className="px-6 py-10 bg-gray-50 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-8">Our Books</h1>
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="w-full mb-4 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      >
-        {categories.map((cat, idx) => (
-          <option key={idx} value={cat}>
-            {cat}
-          </option>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {books.map((book) => (
+          <div
+            key={book.id}
+            className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col justify-between hover:shadow-xl transition-shadow"
+          >
+            {/* Image Section */}
+            <Link to={`/books/${book.id}`}>
+              <div className="h-60 overflow-hidden">
+                <img
+                  src={book.image}
+                  alt={book.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </Link>
+
+            {/* Book Info */}
+            <div className="p-4 flex flex-col flex-grow justify-between">
+              <div>
+                <h2 className="text-lg font-semibold mb-1">{book.title}</h2>
+                <p className="text-gray-600 text-sm">{book.author}</p>
+              </div>
+
+              {/* Price + Button */}
+              <div className="mt-4 flex flex-col">
+                <span className="text-gray-900 font-bold mb-2">
+                  ₹{book.price}
+                </span>
+                <button
+                  onClick={() => {
+                    addToCart(book);
+                    toast.success(`${book.title} added to cart!`);
+                  }}
+                  className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
-      </select>
-
-      <select
-        value={sort}
-        onChange={(e) => setSort(e.target.value)}
-        className="w-full mb-6 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      >
-        <option value="">Sort by</option>
-        <option value="price-asc">Price: Low → High</option>
-        <option value="price-desc">Price: High → Low</option>
-        <option value="title-asc">Title: A → Z</option>
-        <option value="title-desc">Title: Z → A</option>
-      </select>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {currentBooks.length > 0 ? (
-          currentBooks.map((book) => <BookCard key={book.id} book={book} />)
-        ) : (
-          <p className="text-center text-gray-500 col-span-full mt-10">No books found.</p>
-        )}
       </div>
-
-      {totalPages > 1 && (
-        <div className="flex justify-center gap-2 mt-6">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === i + 1 ? "bg-indigo-600 text-white" : "bg-gray-200"
-              }`}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   );
-}
+};
+
+export default Books;
