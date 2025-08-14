@@ -8,7 +8,7 @@ const Books = () => {
   const { addToCart } = useCart();
 
   return (
-    <div className="px-6 py-10 bg-gray-50 min-h-screen">
+    <div className="px-6 py-30 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold text-center mb-8">Our Books</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -21,9 +21,12 @@ const Books = () => {
             <Link to={`/books/${book.id}`}>
               <div className="h-60 overflow-hidden">
                 <img
-                  src={book.image}
+                  src={`/images/${book.imageFile}`}
                   alt={book.title}
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    e.target.src = "/images/placeholder.jpg"; // fallback if missing
+                  }}
                 />
               </div>
             </Link>

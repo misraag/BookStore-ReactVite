@@ -1,58 +1,40 @@
-import { useCart } from "../context/CartContext";
-import { useFavorites } from "../context/FavoritesContext";
-import { Heart, HeartStraight } from "phosphor-react";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import React from "react";
 
-export default function BookCard({ book }) {
-  if (!book) return null;
 
-  const { addToCart } = useCart();
-  const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = favorites.find((b) => b.id === book.id);
-
-  const handleAddToCart = () => {
-    addToCart(book);
-    toast.success(`${book.title} added to cart!`);
-  };
-
-  const handleToggleFavorite = () => {
-    toggleFavorite(book);
-    toast(
-      isFavorite
-        ? `${book.title} removed from favorites!`
-        : `${book.title} added to favorites!`
-    );
-  };
+const BookCard = ({ book, addToCart }) => {
+  // Pick cover URL first, else fallback to local image
+  // const imgSrc = book.cover || `/images/${book.imageFile}`;
 
   return (
-    <div className="border p-4 rounded-lg shadow-md hover:shadow-xl transform hover:-translate-y-1 transition duration-300 bg-white relative">
-      <Link to={`/book/${book.id}`}>
-        {book.cover && (
-          <img
-            src={book.cover}
-            alt={book.title}
-            className="w-full h-60 object-cover mb-4 rounded-lg"
-          />
-        )}
-        <h2 className="text-xl font-bold">{book.title}</h2>
-        <p className="text-gray-500">{book.author}</p>
-      </Link>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
+      {/* Image section */}
+      <div className="h-48 w-full flex items-center justify-center bg-gray-100">
+        <img
+          src={`/images/${book.imageFile}`}
+          alt={book.title}
+          className="h-full w-full object-cover"
+          onError={(e) => {
+            e.target.src = "/images/placeholder.jpg"; // fallback placeholder
+          }}
+        />
+      </div>
 
-      <button
-        onClick={handleToggleFavorite}
-        className="absolute top-3 right-3 text-red-500"
-      >
-        {isFavorite ? <Heart size={24} weight="fill" /> : <HeartStraight size={24} />}
-      </button>
+      {/* Book details */}
+      <div className="p-4 flex flex-col flex-grow">
+        <h3 className="text-lg font-semibold mb-1">{book.title}</h3>
+        <p className="text-sm text-gray-500 mb-2">{book.author}</p>
+        <p className="text-base font-bold mb-4">₹{book.price}</p>
 
-      <p className="mt-2 font-semibold text-indigo-600">₹{book.price}</p>
-      <button
-        onClick={handleAddToCart}
-        className="mt-4 w-full bg-indigo-600 text-blue py-2 rounded hover:bg-indigo-700 transition"
-      >
-        Add to Cart
-      </button>
+        {/* Add to cart button */}
+        <button
+          onClick={() => addToCart(book)}
+          className="mt-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default BookCard;

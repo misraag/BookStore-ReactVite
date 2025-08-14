@@ -1,3 +1,6 @@
+// import book1 from "atomichabits.jpg";
+
+
 const books = [
   {
     id: 1,
@@ -5,7 +8,7 @@ const books = [
     author: "James Clear",
     price: 300,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/51-uspgqWIL.jpg"
+    imageFile: "atomichabits.jpg",
   },
   {
     id: 2,
@@ -13,7 +16,7 @@ const books = [
     author: "Paulo Coelho",
     price: 250,
     category: "Fiction",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41vFZn7JQ6L.jpg"
+    imageFile: "thealchemist.jpeg",
   },
   {
     id: 3,
@@ -21,7 +24,7 @@ const books = [
     author: "Cal Newport",
     price: 350,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41yaM3hFYwL.jpg"
+    imageFile: "deepwork.jpg",
   },
   {
     id: 4,
@@ -29,7 +32,7 @@ const books = [
     author: "Mark Manson",
     price: 320,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41P4OXFJvDL.jpg"
+    imageFile: "subtleart.jpg",
   },
   {
     id: 5,
@@ -37,7 +40,7 @@ const books = [
     author: "Yuval Noah Harari",
     price: 400,
     category: "History",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41XKx3s7fPL.jpg"
+    imageFile: "sapiens.jpg",
   },
   {
     id: 6,
@@ -45,7 +48,7 @@ const books = [
     author: "Daniel Kahneman",
     price: 380,
     category: "Psychology",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41bg42v2G0L.jpg"
+    imageFile: "thinkingfastandslow.jpg",
   },
   {
     id: 7,
@@ -53,7 +56,7 @@ const books = [
     author: "George Orwell",
     price: 270,
     category: "Fiction",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41K9yxR4FgL.jpg"
+    imageFile: "1984.jpg",
   },
   {
     id: 8,
@@ -61,7 +64,7 @@ const books = [
     author: "Harper Lee",
     price: 290,
     category: "Fiction",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/51b5YG6Y1rL.jpg"
+    imageFile: "tokillamockingbird.jpg",
   },
   {
     id: 9,
@@ -69,7 +72,7 @@ const books = [
     author: "Charles Duhigg",
     price: 310,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41YzNnztbdL.jpg"
+    imageFile: "thepowerofhabit.jpeg",
   },
   {
     id: 10,
@@ -77,7 +80,7 @@ const books = [
     author: "Tara Westover",
     price: 330,
     category: "Memoir",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41d5h7q3FVL.jpg"
+    imageFile: "educated.jpg",
   },
   {
     id: 11,
@@ -85,7 +88,7 @@ const books = [
     author: "Eric Ries",
     price: 360,
     category: "Business",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41-SSW51TTL.jpg"
+    imageFile: "theleanstartup.png",
   },
   {
     id: 12,
@@ -93,7 +96,7 @@ const books = [
     author: "Peter Thiel",
     price: 370,
     category: "Business",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41uPjEenkFL.jpg"
+    imageFile: "zerotoone.jpg",
   }
 ];
 
