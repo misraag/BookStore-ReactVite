@@ -5,12 +5,15 @@ import BookCard from "../components/BookCard";
 export default function Books() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const categories = [
-    "All",
-    ...new Set(booksData.map((book) => book.category)),
-  ];
+  const booksPerPage = 8;
 
+  // Categories including "All"
+  const categories = ["All", ...new Set(booksData.map((book) => book.category))];
+
+  // Filter by search
   const filteredBooks = booksData
     .filter(
       (book) =>
@@ -21,8 +24,22 @@ export default function Books() {
       category && category !== "All" ? book.category === category : true
     );
 
+  // Sort filtered books
+  const sortedBooks = [...filteredBooks];
+  if (sort === "price-asc") sortedBooks.sort((a, b) => a.price - b.price);
+  if (sort === "price-desc") sortedBooks.sort((a, b) => b.price - a.price);
+  if (sort === "title-asc") sortedBooks.sort((a, b) => a.title.localeCompare(b.title));
+  if (sort === "title-desc") sortedBooks.sort((a, b) => b.title.localeCompare(a.title));
+
+  // Pagination
+  const indexOfLastBook = currentPage * booksPerPage;
+  const indexOfFirstBook = indexOfLastBook - booksPerPage;
+  const currentBooks = sortedBooks.slice(indexOfFirstBook, indexOfLastBook);
+  const totalPages = Math.ceil(sortedBooks.length / booksPerPage);
+
   return (
     <div className="p-8">
+      {/* Search */}
       <input
         type="text"
         placeholder="Search by title or author..."
@@ -31,10 +48,11 @@ export default function Books() {
         className="w-full mb-4 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
 
+      {/* Category Filter */}
       <select
         value={category}
         onChange={(e) => setCategory(e.target.value)}
-        className="w-full mb-6 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="w-full mb-4 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
       >
         {categories.map((cat, index) => (
           <option key={index} value={cat}>
@@ -43,16 +61,44 @@ export default function Books() {
         ))}
       </select>
 
+      {/* Sorting */}
+      <select
+        value={sort}
+        onChange={(e) => setSort(e.target.value)}
+        className="w-full mb-6 p-3 border rounded shadow focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option value="">Sort by</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="title-asc">Title: A → Z</option>
+        <option value="title-desc">Title: Z → A</option>
+      </select>
+
+      {/* Books Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {filteredBooks.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
-        {filteredBooks.length === 0 && (
-          <p className="text-center text-gray-500 col-span-full mt-10">
-            No books found.
-          </p>
+        {currentBooks.length > 0 ? (
+          currentBooks.map((book) => <BookCard key={book.id} book={book} />)
+        ) : (
+          <p className="text-center text-gray-500 col-span-full mt-10">No books found.</p>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 rounded ${
+                currentPage === i + 1 ? "bg-indigo-600 text-white" : "bg-gray-200"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
