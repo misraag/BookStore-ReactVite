@@ -1,0 +1,25 @@
+const books = [
+  {
+    id: 1,
+    title: "Atomic Habits",
+    author: "James Clear",
+    price: 300,
+    cover: "https://images-na.ssl-images-amazon.com/images/I/51-uspgqWIL._SX329_BO1,204,203,200_.jpg"
+  },
+  {
+    id: 2,
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    price: 250,
+    cover: "https://images-na.ssl-images-amazon.com/images/I/41vFZn7JQ6L._SX331_BO1,204,203,200_.jpg"
+  },
+  {
+    id: 3,
+    title: "Deep Work",
+    author: "Cal Newport",
+    price: 350,
+    cover: "https://images-na.ssl-images-amazon.com/images/I/41yaM3hFYwL._SX329_BO1,204,203,200_.jpg"
+  },
+];
+
+export default books;

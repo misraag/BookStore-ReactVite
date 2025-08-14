@@ -1,3 +1,12 @@
+import books from "../data/books";
+import BookCard from "../components/BookCard";
+
 export default function Books() {
-  return <h1 className="text-3xl text-center mt-20">Books Page</h1>;
+  return (
+    <div className="p-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {books.map((book) => (
+        <BookCard key={book.id} book={book} />
+      ))}
+    </div>
+  );
 }
