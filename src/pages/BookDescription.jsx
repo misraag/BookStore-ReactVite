@@ -35,7 +35,7 @@ export default function BookDescription() {
       {/* Left: Book Cover */}
       <div className="flex-shrink-0">
         <img
-          src={book.cover}
+          src={`/images/${book.imageFile}`}
           alt={book.title}
           className="w-full md:w-64 h-auto object-cover rounded-lg mx-auto"
         />

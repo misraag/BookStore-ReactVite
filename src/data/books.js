@@ -1,6 +1,5 @@
 // import book1 from "atomichabits.jpg";
 
-
 const books = [
   {
     id: 1,
@@ -28,11 +27,11 @@ const books = [
   },
   {
     id: 4,
-    title: "The Subtle Art of Not Giving a F*ck",
-    author: "Mark Manson",
-    price: 320,
-    category: "Self-help",
-    imageFile: "subtleart.jpg",
+    title: "Sophie's World",
+    author: "Jostein Gaarder",
+    price: 350,
+    category: "Philosophical Fiction",
+    imageFile: "sophiesworld.jpg",
   },
   {
     id: 5,
@@ -97,7 +96,7 @@ const books = [
     price: 370,
     category: "Business",
     imageFile: "zerotoone.jpg",
-  }
+  },
 ];
 
 export default books;

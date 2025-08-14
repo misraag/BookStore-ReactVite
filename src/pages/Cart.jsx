@@ -30,7 +30,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="pt-24 max-w-5xl mx-auto px-4 p-8 space-y-6">
+    <div className="pt-24 max-w-5xl mx-auto px-4 p-8 space-y-6 justify-center flex-col">
       {cart.map((book) => (
         <div
           key={book.id}
@@ -52,7 +52,7 @@ export default function Cart() {
           </div>
           <button
             onClick={() => removeFromCart(book.id)}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition mt-4 md:mt-0"
+            className="bg-red-500 text-blue mx-8 px-4 py-2 rounded hover:bg-red-600 transition mt-4 md:mt-0"
           >
             Remove
           </button>
@@ -64,7 +64,7 @@ export default function Cart() {
       <div className="text-right mt-4">
         <button
           onClick={handleCheckout}
-          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition"
+          className="bg-green-600 text-blue px-6 py-3 rounded hover:bg-green-700 transition"
         >
           Checkout
         </button>
