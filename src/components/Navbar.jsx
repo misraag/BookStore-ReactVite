@@ -11,6 +11,7 @@ export default function Navbar() {
       <div className="flex items-center gap-6">
         <Link className="hover:underline" to="/">Home</Link>
         <Link className="hover:underline" to="/books">Books</Link>
+        <Link className="hover:underline" to="/favorites">Favorites</Link>
         <Link className="relative flex items-center gap-2 hover:underline" to="/cart">
           <ShoppingCart size={24} weight="bold" />
           <span className="absolute -top-2 -right-3 bg-red-500 text-xs rounded-full w-5 h-5 flex items-center justify-center">

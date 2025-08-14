@@ -5,7 +5,7 @@ const books = [
     author: "James Clear",
     price: 300,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/51-uspgqWIL._SX329_BO1,204,203,200_.jpg"
+    cover: "https://images-na.ssl-images-amazon.com/images/I/51-uspgqWIL.jpg"
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const books = [
     author: "Paulo Coelho",
     price: 250,
     category: "Fiction",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41vFZn7JQ6L._SX331_BO1,204,203,200_.jpg"
+    cover: "https://images-na.ssl-images-amazon.com/images/I/41vFZn7JQ6L.jpg"
   },
   {
     id: 3,
@@ -21,8 +21,8 @@ const books = [
     author: "Cal Newport",
     price: 350,
     category: "Self-help",
-    cover: "https://images-na.ssl-images-amazon.com/images/I/41yaM3hFYwL._SX329_BO1,204,203,200_.jpg"
+    cover: "https://images-na.ssl-images-amazon.com/images/I/41yaM3hFYwL.jpg"
   }
 ];
 
-export default books;
+export default books;  // ✅ This is important
