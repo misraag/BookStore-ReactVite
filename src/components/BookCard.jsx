@@ -28,7 +28,7 @@ const BookCard = ({ book, addToCart }) => {
         {/* Add to cart button */}
         <button
           onClick={() => addToCart(book)}
-          className="mt-auto bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+          className="mt-auto bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition"
         >
           Add to Cart
         </button>
